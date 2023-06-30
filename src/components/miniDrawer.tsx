@@ -21,10 +21,10 @@ import HomeIcon from "@mui/icons-material/Home";
 import InfoIcon from "@mui/icons-material/Info";
 import CommentIcon from "@mui/icons-material/Comment";
 import ContactMailIcon from "@mui/icons-material/ContactMail";
-import HomeContent from "./Home/HomeContent";
-import AboutContent from "./About/AboutContent";
-import TestimonialContent from "./Testimonials/TestimonialContent";
-import ContactContent from "./Contact/ContactContent";
+import HomeContent from "./home/HomeContent";
+import AboutContent from "./about/AboutContent";
+import TestimonialContent from "./testinomials/TestimonialContent";
+import ContactContent from "./contact/ContactContent";
 
 
 const drawerWidth = 240;

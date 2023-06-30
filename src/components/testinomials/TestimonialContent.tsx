@@ -2,8 +2,13 @@
 
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { useEffect, useState } from 'react';
-import CustomButton from '../Button/Button';
-import { fetchTestimonials } from './testimonials';
+import AddTestimonials from './AddTest';
+
+import { fetchTestimonials } from './Testimonials';
+
+
+
+
 
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'ID', width: 70 },
@@ -23,6 +28,8 @@ const columns: GridColDef[] = [
 export default function TestimonialContent() {
   const [rows, setRows] = useState([]);
 
+
+
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchTestimonials();
@@ -31,9 +38,11 @@ export default function TestimonialContent() {
 
     fetchData();
   }, []);
+
+  
   return (
     <div className="main-test" style={{ width: '100%' }}>
-      <CustomButton />
+      <AddTestimonials />
       <div style={{ width: '100%' }}>
         <DataGrid
           rows={rows}

@@ -1,5 +1,5 @@
 import { Typography } from "@mui/material"
-import CustomButton from "../Button/Button"
+import CustomButton from "../customs/button/Button"
 
 
 const ContactContent = () => {

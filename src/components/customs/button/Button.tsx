@@ -1,5 +1,3 @@
-
-
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
@@ -15,7 +13,6 @@ const CustomButton = () => {
             <Button variant="outlined" startIcon={<DeleteIcon />}>
                 Delete
             </Button>
-
         </Stack>
     )
 }
