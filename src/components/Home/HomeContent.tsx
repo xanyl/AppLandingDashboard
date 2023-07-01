@@ -6,8 +6,8 @@ const HomeContent = () => {
     return (
        <>
        
-        <Typography variant="h6" component="div">
-            Home Content My name is Anil Tiwari
+        <Typography variant="h3">
+           DashBoard
         </Typography>
        </>
     )

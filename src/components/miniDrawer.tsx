@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 import { styled, useTheme, Theme, CSSObject } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
@@ -19,12 +19,9 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import HomeIcon from "@mui/icons-material/Home";
 import InfoIcon from "@mui/icons-material/Info";
+import QuizIcon from '@mui/icons-material/Quiz';
 import CommentIcon from "@mui/icons-material/Comment";
-import ContactMailIcon from "@mui/icons-material/ContactMail";
-import HomeContent from "./Home/HomeContent";
-import AboutContent from "./About/AboutContent";
-import TestimonialContent from "./Testimonials/TestimonialContent";
-import ContactContent from "./Contact/ContactContent";
+
 
 
 const drawerWidth = 240;
@@ -97,9 +94,11 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-const iconComponents = [HomeIcon, InfoIcon, CommentIcon, ContactMailIcon];
+interface ChildrenProps {
+  children: React.ReactNode;
+}
 
-export default function MiniDrawer() {
+ const MiniDrawer:React.FC<ChildrenProps> =({children}) => {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [selectedItem, setSelectedItem] = React.useState("Home");
@@ -116,20 +115,14 @@ export default function MiniDrawer() {
     setSelectedItem(text);
   };
 
-  const getPageTitle = () => {
-    switch (selectedItem) {
-      case "Home":
-        return "Home Page";
-      case "About":
-        return "About Page";
-      case "Testimonials":
-        return "Testimonials Page";
-      case "Contact":
-        return "Contact Page";
-      default:
-        return "Mini variant drawer";
-    }
-  };
+  
+
+  //Links and Icons
+
+  const iconComponents = [HomeIcon, InfoIcon, CommentIcon, QuizIcon];
+  const links = ['Home', 'About', 'Testimonials', 'FAQs'];
+
+  
 
   return (
     <Router>
@@ -150,7 +143,7 @@ export default function MiniDrawer() {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" noWrap component="div">
-              {getPageTitle()}
+              {selectedItem}
             </Typography>
           </Toolbar>
         </AppBar>
@@ -166,7 +159,7 @@ export default function MiniDrawer() {
           </DrawerHeader>
           <Divider />
           <List>
-            {["Home", "About", "Testimonials", "Contact"].map((text, index) => {
+            {links.map((text, index) => {
               const IconComponent = iconComponents[index];
               return (
                 <ListItem
@@ -180,7 +173,6 @@ export default function MiniDrawer() {
                     to={`/${text.toLowerCase()}`}
                     selected={selectedItem === text}
                     sx={{
-
                       minHeight: 48,
                       justifyContent: open ? "center" : "flex-start",
                       px: 2.5,
@@ -203,38 +195,16 @@ export default function MiniDrawer() {
 
             display: "flex",
             flexDirection: "column",
-            flexGrow: 1,
-            minWidth: "80vw",
-            minHeight: "100vh",
-            ...(open && { marginLeft: `-${drawerWidth}px` }),
-
+            width: "100%",
+            marginLeft : "10px"
           }}
         >
           <DrawerHeader />
-          <Routes>
-            <Route path="/home" element={
-              <div style={{ marginLeft: open ? drawerWidth : 0 }}>
-                <HomeContent />
-              </div>
-            } />
-            <Route path="/about" element={
-              <div style={{ marginLeft: open ? drawerWidth : 0 }}>
-                <AboutContent />
-              </div>
-            } />
-            <Route path="/testimonials" element={
-              <div style={{ marginLeft: open ? drawerWidth : 0 }}>
-                <TestimonialContent />
-              </div>
-            } />
-            <Route path="/contact" element={
-              <div style={{ marginLeft: open ? drawerWidth : 0 }}>
-                <ContactContent />
-              </div>
-            } />
-          </Routes>
+          {children}
         </Box>
       </Box>
     </Router>
   );
 }
+
+export default MiniDrawer;
