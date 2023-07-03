@@ -24,7 +24,8 @@ import ContactMailIcon from "@mui/icons-material/ContactMail";
 import HomeContent from "./home/HomeContent";
 import AboutContent from "./about/AboutContent";
 import TestimonialContent from "./testinomials/TestimonialContent";
-import ContactContent from "./contact/ContactContent";
+import ContactContent from "./faqs/FaqsContent";
+import FaqsContent from "./faqs/FaqsContent";
 
 
 const drawerWidth = 240;
@@ -102,7 +103,7 @@ const iconComponents = [HomeIcon, InfoIcon, CommentIcon, ContactMailIcon];
 export default function MiniDrawer() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const [selectedItem, setSelectedItem] = React.useState("Home");
+  const [selectedItem, setSelectedItem] = React.useState("default");
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -124,8 +125,8 @@ export default function MiniDrawer() {
         return "About Page";
       case "Testimonials":
         return "Testimonials Page";
-      case "Contact":
-        return "Contact Page";
+      case "FAQs":
+        return "FAQs Page";
       default:
         return "Mini variant drawer";
     }
@@ -166,7 +167,7 @@ export default function MiniDrawer() {
           </DrawerHeader>
           <Divider />
           <List>
-            {["Home", "About", "Testimonials", "Contact"].map((text, index) => {
+            {["Home", "About", "Testimonials", "FAQs"].map((text, index) => {
               const IconComponent = iconComponents[index];
               return (
                 <ListItem
@@ -227,9 +228,9 @@ export default function MiniDrawer() {
                 <TestimonialContent />
               </div>
             } />
-            <Route path="/contact" element={
+            <Route path="/faqs" element={
               <div style={{ marginLeft: open ? drawerWidth : 0 }}>
-                <ContactContent />
+                <FaqsContent />
               </div>
             } />
           </Routes>

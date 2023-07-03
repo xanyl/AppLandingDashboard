@@ -5,6 +5,7 @@ import Stack from "@mui/material/Stack";
 
 
 const CustomButton = () => {
+    console.log("hello");
     return (
         <Stack direction="row" spacing={2} margin="8px">
             <Button variant="contained" endIcon={<AddIcon />}>
